@@ -9,16 +9,16 @@ using Neo.SmartContract.Framework.Services.Neo;
 [assembly: AssemblyMetadata("ContractEmail", "harrypierson@hotmail.com")]
 [assembly: AssemblyMetadata("ContractHasStorage", "true")]
 
-namespace Neo.SmartContract.Framework
-{
-    [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.ReturnValue)]
-    public class ContractParameterTypeAttribute : Attribute
-    {
-        public ContractParameterTypeAttribute(string name)
-        {
-        }
-    }
-}
+//namespace Neo.SmartContract.Framework
+//{
+//    [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.ReturnValue)]
+//    public class ContractParameterTypeAttribute : Attribute
+//    {
+//        public ContractParameterTypeAttribute(string name)
+//        {
+//        }
+//    }
+//}
 
 namespace DevHawk.Neo.Experiments
 {
@@ -41,13 +41,13 @@ namespace DevHawk.Neo.Experiments
             }
         }
 
-        [return: ContractParameterType("__Hash160")]
+        //[return: ContractParameterType("__Hash160")]
         public static byte[] Query(string domain)
         {
             return Storage.Get(Storage.CurrentContext, domain);
         }
 
-        public static bool Register(string domain, [ContractParameterType("__Hash160")] byte[] owner)
+        public static bool Register(string domain, /*[ContractParameterType("__Hash160")]*/ byte[] owner)
         {
             if (!Runtime.CheckWitness(owner)) return false;
             byte[] value = Storage.Get(Storage.CurrentContext, domain);
@@ -56,7 +56,7 @@ namespace DevHawk.Neo.Experiments
             return true;
         }
 
-        public static bool Transfer(string domain, [ContractParameterType("__Hash160")] byte[] to)
+        public static bool Transfer(string domain, /*[ContractParameterType("__Hash160")]*/ byte[] to)
         {
             if (!Runtime.CheckWitness(to)) return false;
             byte[] from = Storage.Get(Storage.CurrentContext, domain);
