@@ -1,24 +1,12 @@
 ﻿using Neo.SmartContract.Framework;
-using System;
-using System.Numerics;
-using System.Reflection;
 using Neo.SmartContract.Framework.Services.Neo;
+using System.ComponentModel;
+using System.Reflection;    
 
 [assembly: AssemblyDescription("Sample Smart Contract")]
 [assembly: AssemblyMetadata("ContractAuthor", "Harry Pierson")]
 [assembly: AssemblyMetadata("ContractEmail", "harrypierson@hotmail.com")]
 [assembly: AssemblyMetadata("ContractHasStorage", "true")]
-
-//namespace Neo.SmartContract.Framework
-//{
-//    [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.ReturnValue)]
-//    public class ContractParameterTypeAttribute : Attribute
-//    {
-//        public ContractParameterTypeAttribute(string name)
-//        {
-//        }
-//    }
-//}
 
 namespace DevHawk.Neo.Experiments
 {
@@ -41,13 +29,14 @@ namespace DevHawk.Neo.Experiments
             }
         }
 
-        //[return: ContractParameterType("__Hash160")]
+        [DisplayName("query")]
         public static byte[] Query(string domain)
         {
             return Storage.Get(Storage.CurrentContext, domain);
         }
 
-        public static bool Register(string domain, /*[ContractParameterType("__Hash160")]*/ byte[] owner)
+        [DisplayName("register")]
+        public static bool Register(string domain, byte[] owner)
         {
             if (!Runtime.CheckWitness(owner)) return false;
             byte[] value = Storage.Get(Storage.CurrentContext, domain);
@@ -56,7 +45,8 @@ namespace DevHawk.Neo.Experiments
             return true;
         }
 
-        public static bool Transfer(string domain, /*[ContractParameterType("__Hash160")]*/ byte[] to)
+        [DisplayName("transfer")]
+        public static bool Transfer(string domain, byte[] to)
         {
             if (!Runtime.CheckWitness(to)) return false;
             byte[] from = Storage.Get(Storage.CurrentContext, domain);
@@ -66,6 +56,7 @@ namespace DevHawk.Neo.Experiments
             return true;
         }
 
+        [DisplayName("delete")]
         public static bool Delete(string domain)
         {
             byte[] owner = Storage.Get(Storage.CurrentContext, domain);
