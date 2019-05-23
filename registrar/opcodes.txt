@@ -36,19 +36,30 @@ c4 33: SETITEM  #
 6a 34: DUPFROMALTSTACK  #
 52 35: PUSH2  # The number 2 is pushed onto the stack.
 c3 36: PICKITEM  #
+    alt stack: ["register", ["test-domain", byte array arg], "register", "register", false]
+    mainstack: "register" 
 64 37: JMPIFNOT 9900 # 153
+    pops the main stack and jumps if the value can be interpreted as bool false
+    a non empty string is true so we don't jump 
 6a 40: DUPFROMALTSTACK  #
 52 41: PUSH2  # The number 2 is pushed onto the stack.
 c3 42: PICKITEM  #
 05 43: PUSHBYTES5 7175657279 # query
+    alt stack: ["register", ["test-domain", byte array arg], "register", "register", false]
+    mainstack: "register", "query" 
 87 49: EQUAL  # Returns 1 if the inputs are exactly equal, 0 otherwise.
+    alt stack: ["register", ["test-domain", byte array arg], "register", "register", false]
+    mainstack: false 
 63 50: JMPIF 3400 # 52
 6a 53: DUPFROMALTSTACK  #
 52 54: PUSH2  # The number 2 is pushed onto the stack.
 c3 55: PICKITEM  #
 08 56: PUSHBYTES8 7265676973746572 # register
 87 65: EQUAL  # Returns 1 if the inputs are exactly equal, 0 otherwise.
+    alt stack: ["register", ["test-domain", byte array arg], "register", "register", false]
+    mainstack: true 
 63 66: JMPIF 3700 # 55
+    Jump to 121 (66 + 55)
 6a 69: DUPFROMALTSTACK  #
 52 70: PUSH2  # The number 2 is pushed onto the stack.
 c3 71: PICKITEM  #
@@ -75,6 +86,11 @@ e0 108: CALL_I 6000 # ret 1 param 1 jump_offset 96
 7a 116: ROLL  # The item n back in the stack is moved to the top.
 c4 117: SETITEM  #
 62 118: JMP 5100 # 81
+    pretty sure 121 is the start of the register function
+        Nope, it gets the stack ready to call the register function
+        the actual call to the function is the CALL_I operation at 133
+    alt stack has the 5 item array
+    main stack is empty
 6a 121: DUPFROMALTSTACK  #
 51 122: PUSH1  # The number 1 is pushed onto the stack.
 c3 123: PICKITEM  #
@@ -87,7 +103,11 @@ c3 128: PICKITEM  #
 c3 130: PICKITEM  #
 61 131: NOP  # Does nothing.
 7c 132: SWAP  # The top two items on the stack are swapped.
+    alt stack 5 item array
+    main stack has the two parameters for the function
 e0 133: CALL_I 7300 # ret 1 param 2 jump_offset 115
+    133 + 115 == 248, but the call_i operation jumps to 250
+    I suspect the jump difference is because the call_i operation has operands
 6a 138: DUPFROMALTSTACK  #
 54 139: PUSH4  # The number 4 is pushed onto the stack.
 52 140: PUSH2  # The number 2 is pushed onto the stack.
@@ -172,6 +192,9 @@ c3 245: PICKITEM  #
 6c 247: FROMALTSTACK  # Puts the input onto the top of the main stack. Removes it from the alt stack.
 75 248: DROP  # Removes the top stack item.
 66 249: RET  #
+    I think 250 is the start of the register function 
+    Alt Stack empty
+    Main stack: wallet address, "test-domain"
 56 250: PUSH6  # The number 6 is pushed onto the stack.
 c5 251: NEWARRAY  #
 6b 252: TOALTSTACK  # Puts the input onto the top of the alt stack. Removes it from the main stack.
@@ -194,7 +217,13 @@ c4 266: SETITEM  #
 51 269: PUSH1  # The number 1 is pushed onto the stack.
 c3 270: PICKITEM  #
 61 271: NOP  # Does nothing.
-68 272: SYSCALL 04efdfe694 # 
+    alt stack: ["test-domain", wallet address, false, false, false, false]
+        I think this array holds the local variables
+        0-1 are domain and owner parameters
+        2 is for return value
+        3-5 are for local variables
+    main stack: wallet address
+68 272: SYSCALL 04efdfe694 # Runtime.CheckWitness
 00 278: PUSH0  #An empty array of bytes is pushed onto the stack
 9c 279: NUMEQUAL  # Returns 1 if the numbers are equal, 0 otherwise.
 6a 280: DUPFROMALTSTACK  #
@@ -267,6 +296,7 @@ c3 360: PICKITEM  #
 7a 375: ROLL  # The item n back in the stack is moved to the top.
 c4 376: SETITEM  #
 62 377: JMP 0300 # 3
+    380 looks like the continueation of register function if CheckWitness fails
 6a 380: DUPFROMALTSTACK  #
 54 381: PUSH4  # The number 4 is pushed onto the stack.
 c3 382: PICKITEM  #
