@@ -38,7 +38,7 @@ namespace DevHawk.Neo.Experiments
         [DisplayName("register")]
         public static bool Register(string domain, byte[] owner)
         {
-            if (!Runtime.CheckWitness(owner)) return false;
+            // if (!Runtime.CheckWitness(owner)) return false;
             byte[] value = Storage.Get(Storage.CurrentContext, domain);
             if (value != null) return false;
             Storage.Put(Storage.CurrentContext, domain, owner);
@@ -48,10 +48,10 @@ namespace DevHawk.Neo.Experiments
         [DisplayName("transfer")]
         public static bool Transfer(string domain, byte[] to)
         {
-            if (!Runtime.CheckWitness(to)) return false;
+            // if (!Runtime.CheckWitness(to)) return false;
             byte[] from = Storage.Get(Storage.CurrentContext, domain);
             if (from == null) return false;
-            if (!Runtime.CheckWitness(from)) return false;
+            // if (!Runtime.CheckWitness(from)) return false;
             Storage.Put(Storage.CurrentContext, domain, to);
             return true;
         }
@@ -61,7 +61,7 @@ namespace DevHawk.Neo.Experiments
         {
             byte[] owner = Storage.Get(Storage.CurrentContext, domain);
             if (owner == null) return false;
-            if (!Runtime.CheckWitness(owner)) return false;
+            // if (!Runtime.CheckWitness(owner)) return false;
             Storage.Delete(Storage.CurrentContext, domain);
             return true;
         }
