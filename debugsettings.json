@@ -1,0 +1,5 @@
+{
+    "neo-debugger.debug": true,
+    "neo-debugger.log": true,
+    "neo-debugger.debug-adapter": ["dotnet", "C:\\Users\\harry\\Source\\neo\\seattle\\debug\\src\\adapter\\bin\\Debug\\netcoreapp2.2\\neo-debug-adapter.dll"]
+}
