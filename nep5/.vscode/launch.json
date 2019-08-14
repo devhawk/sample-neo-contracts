@@ -1,0 +1,91 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "totalSupply",
+            "type": "neo-contract",
+            "request": "launch",
+            "program": "${workspaceFolder}\\bin\\Debug\\net472\\NEP5.avm",
+            "args": ["totalSupply"],
+            "storage": [],
+            "runtime": {
+                "witnesses": {
+                    "check-result": true
+                }
+            }
+
+        },
+        {
+            "name": "name",
+            "type": "neo-contract",
+            "request": "launch",
+            "program": "${workspaceFolder}\\bin\\Debug\\net472\\NEP5.avm",
+            "args": ["name"],
+            "storage": [],
+            "runtime": {
+                "witnesses": {
+                    "check-result": true
+                }
+            }
+        },
+        {
+            "name": "symbol",
+            "type": "neo-contract",
+            "request": "launch",
+            "program": "${workspaceFolder}\\bin\\Debug\\net472\\NEP5.avm",
+            "args": ["symbol"],
+            "storage": [],
+            "runtime": {
+                "witnesses": {
+                    "check-result": true
+                }
+            }
+        },
+        {
+            "name": "supportedStandards",
+            "type": "neo-contract",
+            "request": "launch",
+            "program": "${workspaceFolder}\\bin\\Debug\\net472\\NEP5.avm",
+            "args": ["supportedStandards"],
+            "storage": [],
+            "runtime": {
+                "witnesses": {
+                    "check-result": true
+                }
+            }
+        },
+        {
+            "name": "decimals",
+            "type": "neo-contract",
+            "request": "launch",
+            "program": "${workspaceFolder}\\bin\\Debug\\net472\\NEP5.avm",
+            "args": ["decimals"],
+            "storage": [],
+            "runtime": {
+                "witnesses": {
+                    "check-result": true
+                }
+            }
+        },
+        {
+            "name": "verify",
+            "type": "neo-contract",
+            "request": "launch",
+            "program": "${workspaceFolder}\\bin\\Debug\\net472\\NEP5.avm",
+            "args": ["symbol"],
+            "storage": [],
+            "runtime": {
+                "trigger":"verification",
+                "witnesses": {
+                    "check-result": true
+                }
+            }
+        },
+
+        
+
+    ]
+}
