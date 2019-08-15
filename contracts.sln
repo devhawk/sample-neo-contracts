@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "negator", "negator\negator.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NEP5", "nep5\NEP5.csproj", "{7B835BBB-3924-4535-839C-AB3DAED2BBA1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CNEO", "cneo\CNEO.csproj", "{828A6636-599E-47AE-A29A-547E81B188B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -98,5 +100,17 @@ Global
 		{7B835BBB-3924-4535-839C-AB3DAED2BBA1}.Release|x64.Build.0 = Release|Any CPU
 		{7B835BBB-3924-4535-839C-AB3DAED2BBA1}.Release|x86.ActiveCfg = Release|Any CPU
 		{7B835BBB-3924-4535-839C-AB3DAED2BBA1}.Release|x86.Build.0 = Release|Any CPU
+		{828A6636-599E-47AE-A29A-547E81B188B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{828A6636-599E-47AE-A29A-547E81B188B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{828A6636-599E-47AE-A29A-547E81B188B3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{828A6636-599E-47AE-A29A-547E81B188B3}.Debug|x64.Build.0 = Debug|Any CPU
+		{828A6636-599E-47AE-A29A-547E81B188B3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{828A6636-599E-47AE-A29A-547E81B188B3}.Debug|x86.Build.0 = Debug|Any CPU
+		{828A6636-599E-47AE-A29A-547E81B188B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{828A6636-599E-47AE-A29A-547E81B188B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{828A6636-599E-47AE-A29A-547E81B188B3}.Release|x64.ActiveCfg = Release|Any CPU
+		{828A6636-599E-47AE-A29A-547E81B188B3}.Release|x64.Build.0 = Release|Any CPU
+		{828A6636-599E-47AE-A29A-547E81B188B3}.Release|x86.ActiveCfg = Release|Any CPU
+		{828A6636-599E-47AE-A29A-547E81B188B3}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
